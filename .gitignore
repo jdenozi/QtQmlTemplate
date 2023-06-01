@@ -1,5 +1,63 @@
 # Prerequisites
 *.d
+# General C++ ignore rules
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.lib
+*.dll
+*.dylib
+*.pdb
+*.ilk
+*.idb
+*.exp
+*.ipch
+*.iobj
+*.pch
+*.class
+bin*
+
+# CMake build directories
+build/
+cmake-build-*/
+
+# Qt-specific ignore rules
+moc_*
+ui_*
+*_resource.rc
+*.qm
+*.user*
+*.qrc.depends
+qrc_*.cpp
+*qmldir
+
+# Qt Creator
+*.autosave
+CMakeLists.txt.user*
+*.config
+*.creator
+*.ini
+*.qmlproject
+*.pro
+*.pro.user
+*.pro.shared
+*.qmake.cache
+*.qmake.stash
+
+# Visual Studio Code
+.vscode/
+
+# CLion
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+*.swp
+*.swo
 
 # Compiled Object files
 *.slo
@@ -16,6 +74,7 @@
 *.dylib
 *.dll
 
+<<<<<<< HEAD
 # Fortran module files
 *.mod
 *.smod
@@ -30,3 +89,12 @@
 *.exe
 *.out
 *.app
+*.i*86
+*.x86_64
+*.hex
+version.h
+*.qrc
+
+# qrc files
+assets/assets.qrc
+
