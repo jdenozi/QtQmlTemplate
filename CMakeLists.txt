@@ -36,6 +36,12 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
         )
 
+# Add automatic version file
+configure_file(
+        include/version.h.in
+        include/version.h
+)
+
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/AutoQtQml.cmake")
