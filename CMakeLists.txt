@@ -45,7 +45,10 @@ configure_file(
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/AutoQtQml.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/Config.cmake")
 
+link_qt_common_to_target(${PROJECT_NAME})
+config_target_bin_path(${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME}
         Qt5::Core
@@ -53,11 +56,4 @@ target_link_libraries(${PROJECT_NAME}
         Qt5::Widgets
         Qt5::Qml
         )
-
-# Setting the output directory
-if (CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(OUTPUT_BIN_DIRECTORY "${CMAKE_SYSTEM_NAME}/x64/${CMAKE_BUILD_TYPE}")
-elseif (CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(OUTPUT_BIN_DIRECTORY "${CMAKE_SYSTEM_NAME}/x86/${CMAKE_BUILD_TYPE}")
-endif ()
 
