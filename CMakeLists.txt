@@ -4,7 +4,6 @@ project(
     qtQmlTemplate
     VERSION 0.0.1
     DESCRIPTION "Qt qml template that fully automize the qrc / qml file cmake import"
-    HOMEPAGE_URL ""
 )
 
 set(CMAKE_CXX_STANDARD 17)
@@ -29,6 +28,12 @@ find_package(Qt5 COMPONENTS
         Qml
         REQUIRED)
 
+# Add automatic version file
+configure_file(
+        include/version.h.in
+        include/version.h
+)
+
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
         main.cpp
         "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
@@ -36,11 +41,6 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
         )
 
-# Add automatic version file
-configure_file(
-        include/version.h.in
-        include/version.h
-)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 

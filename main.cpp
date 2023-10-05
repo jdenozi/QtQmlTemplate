@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
-//#include "version.h"
+#include <QQmlContext>
+#include "version.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -14,7 +15,7 @@ int main(int argc, char *argv[]) {
                     QCoreApplication::exit(-1);
             },
             Qt::QueuedConnection);
-    //engine.rootContext()->setContextProperty("appVersion", QString(QT_QML_TEMPLATE_VERSION));
+    engine.rootContext()->setContextProperty("appVersion", QString(QT_QML_TEMPLATE_VERSION));
     engine.addImportPath( "qrc:modules/");
     engine.load(url);
     qApp->exec();
