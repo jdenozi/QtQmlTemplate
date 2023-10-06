@@ -1,5 +1,13 @@
 
 function(link_qt_common_to_target TARGET)
+
+    find_package(Qt5 COMPONENTS ${QTCOMMON_QT_COMPONENTS} REQUIRED)
+    foreach(QT_COMPONENT ${QTCOMMON_QT_COMPONENTS})
+        message("-- [Link] Qt5::${QT_COMPONENT}")
+        target_link_libraries(${TARGET} PRIVATE "Qt5::${QT_COMPONENT}")
+        target_include_directories(${TARGET} PRIVATE ${Qt5${QT_COMPONENT}_INCLUDE_DIRS})
+    endforeach()
+
     # Create modules qmldir files
     function(create_modules_qmldir_files ROOT_DIR)
         file(GLOB MODULE_FILES "${ROOT_DIR}/*")
@@ -58,6 +66,6 @@ function(link_qt_common_to_target TARGET)
         file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/assets/assets.qrc" "${ASSETS_FILE_CONTENT}")
     endfunction()
     create_assets_qrc_file()
-    target_sources(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/assets/assets.qrc" ${${PROJECT_NAME}_QT_QRC} ${${PROJECT_NAME}_QT_QML})
+    target_sources(${TARGET} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/assets/assets.qrc" ${${TARGET}_QT_QRC} ${${TARGET}_QT_QML})
 
 endfunction()

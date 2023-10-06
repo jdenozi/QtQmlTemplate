@@ -11,6 +11,19 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+set(QTCOMMON_QT_COMPONENTS
+        Concurrent
+        Core
+        Gui
+        Network
+        Qml
+        Quick
+        Widgets
+        Test
+        Multimedia
+        WebView
+)
+
 set(
     ${PROJECT_NAME}_QT_QRC
     assets/assets.qrc
@@ -21,18 +34,6 @@ set(
     assets/assets.qrc
 )
 
-find_package(Qt5 COMPONENTS
-        Core
-        Gui
-        Widgets
-        Qml
-        REQUIRED)
-
-# Add automatic version file
-configure_file(
-        include/version.h.in
-        include/version.h
-)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
         main.cpp
@@ -50,10 +51,4 @@ include("${CMAKE_CURRENT_LIST_DIR}/cmake/Config.cmake")
 link_qt_common_to_target(${PROJECT_NAME})
 config_target_bin_path(${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME}
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
-        Qt5::Qml
-        )
 
