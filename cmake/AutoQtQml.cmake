@@ -1,4 +1,3 @@
-
 function(link_qt_common_to_target TARGET)
 
     find_package(Qt5 COMPONENTS ${QTCOMMON_QT_COMPONENTS} REQUIRED)
@@ -66,6 +65,9 @@ function(link_qt_common_to_target TARGET)
         file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/assets/assets.qrc" "${ASSETS_FILE_CONTENT}")
     endfunction()
     create_assets_qrc_file()
-    target_sources(${TARGET} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/assets/assets.qrc" ${${TARGET}_QT_QRC} ${${TARGET}_QT_QML})
+
+    # Include Qt resource files
+    qt5_add_resources(RESOURCES ${PROJECT_QT_RESOURCE})
+    target_sources(${TARGET} PRIVATE ${RESOURCES})
 
 endfunction()
